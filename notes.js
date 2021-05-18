@@ -10,9 +10,9 @@ const getNotes = function() {
 const addNote = (title, body) => {
     const notes = loadNotes()
 
-    const duplicateNotes = notes.filter(note => note.title === title)
+    const duplicateNotes = notes.find(note => note.title === title)
 
-    if(duplicateNotes.length > 0){
+    if(duplicateNotes){
         console.log(chalk.red.inverse.bold('Note title already added'))
     } else {
         notes.push({
@@ -64,11 +64,11 @@ const removeNote = (title) => {
 const readNote = (title) => {
     const notes = loadNotes(title)
 
-    const noteToRead = notes.filter(note => note.title === title)
+    const noteToRead = notes.find(note => note.title === title)
 
-    if(noteToRead.length > 0) {
+    if(noteToRead) {
         console.log(chalk.green('Note found'))
-        console.log(noteToRead[0])
+        console.log(noteToRead)
     } else {
         console.log(chalk.red.inverse.bold(`${title} does not exist in the file`))
     }
