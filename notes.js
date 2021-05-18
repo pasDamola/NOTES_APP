@@ -61,4 +61,17 @@ const removeNote = (title) => {
     }
 }
 
-module.exports = { getNotes, addNote, removeNote}
+const readNote = (title) => {
+    const notes = loadNotes(title)
+
+    const noteToRead = notes.filter(note => note.title === title)
+
+    if(noteToRead.length > 0) {
+        console.log(chalk.green('Note found'))
+        console.log(noteToRead[0])
+    } else {
+        console.log(chalk.red.inverse.bold(`${title} does not exist in the file`))
+    }
+}
+
+module.exports = { getNotes, addNote, removeNote, readNote }
